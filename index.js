@@ -7,12 +7,27 @@ app.use(express.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 
-app.set(express.static(path.join(__dirname,"public")));
+app.use(express.static(path.join(__dirname,"public")));
 
 app.listen(3000,()=>{
     console.log("Listening on port:3000");
 })
 
-app.get("/",(req,res)=>{
-    res.send("Server Working Well!");
+let data = [
+    {
+        username:"Govind",
+        content:"I am practicing"
+    },
+    {
+        username:"ShradhaKhapra",
+        content:"Hard Work!"
+    },
+    {
+        username:"RahulKumar",
+        content:"I Got my first internship!"
+    },
+]
+
+app.get("/posts",(req,res)=>{
+    res.render("index.ejs",{postData:data});
 })
