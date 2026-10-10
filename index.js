@@ -30,4 +30,15 @@ let data = [
 
 app.get("/posts",(req,res)=>{
     res.render("index.ejs",{postData:data});
+});
+
+app.get("/posts/new",(req,res)=>{
+    res.render("new.ejs");
+});
+
+app.post("/posts",(req,res)=>{
+    let {username,content} = req.body;
+    data.push({username,content});
+    console.log(data);
+    res.redirect("/posts")
 })
