@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const {v4:uuidv4} = require("uuid");
+const methodoverride = require("method-override");
+
+app.use(methodoverride("_method"));
 
 app.use(express.urlencoded({extended:true}));
 
@@ -44,7 +47,7 @@ app.post("/posts",(req,res)=>{
     let {username,content} = req.body;
     let id=uuidv4();
     data.push({username,content,id});
-    res.redirect("/posts")
+    res.redirect("/posts");
 })
 
 app.get("/posts/:id",(req,res)=>{
@@ -52,3 +55,19 @@ app.get("/posts/:id",(req,res)=>{
    let uPost = data.find((p)=> id === p.id);
    res.render("uPost.ejs",{postReq:uPost});
 });
+
+app.patch("/posts/:id",(req,res)=>{
+    let {id} = req.params;
+     let uPost = data.find((p)=> id === p.id);
+     let newContent = req.body.content;
+     uPost.content = newContent;
+     res.redirect("/posts");
+
+});
+
+app.get("/posts/:id/edit",(req,res)=>{
+    let {id} = req.params;
+     let uPost = data.find((p)=> id === p.id);
+     res.render("edit.ejs",{uPost});
+
+})
