@@ -1,11 +1,28 @@
-h1{
-    color:maroon;
+body{
+    background-color: #FF9100;
+    margin: 0;
 }
 
-.post{
-    background-color: blanchedalmond;
+#main{
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFF1D1;
+    border-radius: 10px;
+    border: 5px solid black;
+    display: flex;
+    height: 75vh;
+    padding: 2rem;
+    gap: 3vw;
+    flex-wrap: wrap;
+    justify-content: space-between
 }
 
-.user{
-    font-style: italic;
+.card{
+    background-color: #00b7cd;
+    opacity: 80%;
+    height: 200px;
+    border-radius: 10px;
+    border: 5px solid black;
+    width: 26vw;
 }

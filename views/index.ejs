@@ -5,18 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Posts</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    <h1>Quora Posts</h1>
-    <% for(post of postData) {%>
-    <div class="post">
-        <h3 class="user">@<%=post.username%></h3>
-        <h4 class="content"><%=post.content%></h4>
-        <a href="http://localhost:3000/posts/<%=post.id%>">See in Detail</a>
-        <a href="http://localhost:3000/posts/<%=post.id%>/edit">edit</a>
+    <header>
+        <h1>My Blog</h1>
+        <p>Created By @Govind2067</p>
+    </header>
+    
+    <div id="main">
+            <% for(post of postData) {%>
+        <div class="card">
+                <div class="container">
+                    <h3 class="user">@<%=post.username%></h3>
+                <h4 class="content"><%=post.content%></h4>
+                <a  href="http://localhost:3000/posts/<%=post.id%>" >See in Detail</a>
+                <a  href="http://localhost:3000/posts/<%=post.id%>/edit" >edit</a>
+                <form action="/posts/<%=post.id%>/?_method=DELETE" method="post">
+                    <button >Delete Post</button>
+                </form>
+            </div>
+            
+        </div>
+        <%}%>
     </div>
-    <%}%>
+    
     <br><br>
     <a href="http://localhost:3000/posts/new">Create New Post</a>
+   
 </body>
 </html>
